@@ -1,26 +1,29 @@
 class SubrectangleQueries {
-    int[][] rect;
-    ArrayList<int[]> updates;
+    int[][] rectangle;
+
     public SubrectangleQueries(int[][] rectangle) {
-        rect = rectangle;
-        updates = new ArrayList<>();
+        this.rectangle = rectangle;
     }
     
     public void updateSubrectangle(int row1, int col1, int row2, int col2, int newValue) {
-           updates.add(new int[]{row1, col1, row2, col2, newValue});
+        for(int i=row1; i<= row2; i++){
+            for(int j=col1; j<= col2; j++){
+                rectangle[i][j] = newValue;
+            }
+        }
     }
     
     public int getValue(int row, int col) {
-        int response = rect[row][col];
-        for(int[] arr: updates) {
-            int row1 = arr[0], col1 = arr[1], row2 = arr[2], col2 = arr[3], newValue = arr[4];
-            if(row >= row1 && row <= row2 && col >= col1 && col <= col2) {
-                response = newValue;
-            }
-        }
-        return response;
+        return rectangle[row][col];
     }
 }
+
+/**
+ * Your SubrectangleQueries object will be instantiated and called as such:
+ * SubrectangleQueries obj = new SubrectangleQueries(rectangle);
+ * obj.updateSubrectangle(row1,col1,row2,col2,newValue);
+ * int param_2 = obj.getValue(row,col);
+ */
 
 /**
  * Your SubrectangleQueries object will be instantiated and called as such:
